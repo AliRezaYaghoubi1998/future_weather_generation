@@ -247,3 +247,7 @@ This codebase implements the FTMY (Future Typical Meteorological Year) method as
 ## Author
 
 Ali Reza Yaghoubi
+
+## Supervisors
+Rongling Li
+Kristoffer Negendhal
