@@ -167,24 +167,6 @@ python Src/pipeline/interface_cli.py \
 - `--gcm`: Global Climate Model name (e.g., `ICHEC-EC-EARTH`)
 - `--rcm`: Regional Climate Model name (e.g., `DMI-HIRHAM5`)
 
-### Test Mode
-
-Test mode processes only 10 predefined test days (5 winter, 5 summer) for rapid validation. All pipeline modules execute, but historical matching is filtered to these specific days.
-
-**Activate test mode**:
-```powershell
-# Windows PowerShell
-$env:FTMY_MODE = "test"
-```
-
-```bash
-# Linux/Mac
-export FTMY_MODE="test"
-```
-
-**Test days**: Jan 15, Feb 1, Dec 20, Jan 5, Feb 28, Jun 15, Jul 20, Aug 10, Jun 1, Jul 31
-
-**Note**: Test mode outputs are not scientifically representative and should be used only for engineering validation.
 
 ### Full Mode
 
@@ -229,7 +211,6 @@ All outputs are written to `Output/results/` (full mode) or `Test_Output/results
 
 - `climate_yearly_profiles_complete.png`: Yearly profiles of key climate variables
 - `station_contribution_plots_complete.png`: Contribution analysis by station
-- `temperature_comparison.png`: Comparison of projected vs synthetic daily temperatures
 
 ### Final Output
 
