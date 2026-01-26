@@ -236,7 +236,7 @@ All outputs are written to `Output/results/` (full mode) or `Test_Output/results
 
 This codebase implements the FTMY (Future Typical Meteorological Year) method as described in the associated academic publication. The repository is provided for reproducibility and research purposes. If you use this code, please cite the associated publication.
 
-**Code Repository**: future_weather_generation
+**Code Repository**: [future_weather_generation](https://github.com/AliRezaYaghoubi1998/future_weather_generation)
 
 **Data Sources**:
 - Historical observations: Danish Meteorological Institute (DMI) bulk download service
