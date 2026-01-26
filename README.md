@@ -78,15 +78,6 @@ Each daily file contains 10 min raw observations from multiple stations. The pip
 
 **Format**: NetCDF files following CORDEX naming conventions. Files should be placed in a single directory accessible via `FTMY_PREDICTION_PATH`.
 
-**Required variables**:
-- `tas`: Daily mean temperature (K)
-- `tasmax`: Daily maximum temperature (K)
-- `tasmin`: Daily minimum temperature (K)
-- `rsds`: Daily mean surface downwelling shortwave radiation (W/m²)
-- `sfcWind`: Daily mean surface wind speed (m/s)
-- `pr`: Daily precipitation (mm/day)
-- `potevap`: Daily potential evaporation (mm/day)
-
 **File naming**: Files should follow CORDEX conventions, e.g.:
 ```
 tas_KGDK-1_ICHEC-EC-EARTH_rcp85_r3i1p1_KNMI-RACMO22E_v1_day_20110101-20401231.nc
