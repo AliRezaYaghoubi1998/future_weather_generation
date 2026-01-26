@@ -249,5 +249,5 @@ This codebase implements the FTMY (Future Typical Meteorological Year) method as
 Ali Reza Yaghoubi
 
 ## Supervisors
-Rongling Li
-Kristoffer Negendhal
+1. Rongling Li
+2. Kristoffer Negendhal
