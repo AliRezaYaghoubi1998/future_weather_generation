@@ -163,7 +163,7 @@ python Src/pipeline/interface_cli.py \
 - `--start-year`: Start year of projection period (e.g., 2025)
 - `--end-year`: End year of projection period (e.g., 2050)
 - `--projection-dir`: Directory containing NetCDF files (can use `$env:FTMY_PREDICTION_PATH`)
-- `--scenario`: Climate scenario (e.g., `rcp45`, `rcp85`, `ssp245`, `ssp585`)
+- `--scenario`: Climate scenario (e.g.,`rcp85`)
 - `--gcm`: Global Climate Model name (e.g., `ICHEC-EC-EARTH`)
 - `--rcm`: Regional Climate Model name (e.g., `DMI-HIRHAM5`)
 
