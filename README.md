@@ -226,12 +226,6 @@ All outputs are written to `Output/results/` (full mode) or `Test_Output/results
 
 4. **Geographic Scope**: The current implementation is optimized for Danish meteorological data formats and CORDEX-style NetCDF projections. Adaptation may be required for other regions.
 
-5. **Test Mode**: Test mode outputs are not scientifically valid and should not be used for research or building simulation. Use test mode only for code validation and debugging.
-
-6. **No Machine Learning**: This implementation does not include machine learning methods for gap filling, data imputation, or pattern recognition. All selection and matching is based on deterministic algorithms.
-
-7. **Computational Requirements**: Processing full projection periods (e.g., 2025-2050) requires substantial computational time and memory, particularly for hourly assembly from large historical datasets.
-
 ## Citation / Code Availability
 
 This codebase implements the FTMY (Future Typical Meteorological Year) method as described in the associated academic publication. The repository is provided for reproducibility and research purposes. If you use this code, please cite the associated publication.
