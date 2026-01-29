@@ -4,7 +4,7 @@
 
 FTMY (Future Typical Meteorological Year) is a scientific pipeline for generating hourly weather files for future climate conditions based on climate projections and historical observations. The method selects representative months from future climate projections using FS (Finkelstein–Schafer) selection, matches projected days to historical observations, and assembles hourly time series from nearby meteorological stations. The output is compatible with building energy simulation formats (EPW files).
 
-This implementation corresponds to the methodology described in the associated academic paper. The codebase contains only the core algorithms and workflows required for FTMY generation, without machine learning components or automated data acquisition.
+This implementation corresponds to the methodology described in the associated academic paper.
 
 ## Method Summary
 
