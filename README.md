@@ -18,7 +18,7 @@ The FTMY pipeline operates in six sequential steps:
 
 4. **Historical Matching**: Matches each projected day to the most similar historical day from the same calendar date across available years. Matching uses a normalized distance formula based on daily mean temperature, solar radiation, and wind speed.
 
-5. **Hourly Assembly and Gap Handling**: Constructs hourly time series by extracting data from the matched historical days. For each variable, the method selects the nearest available station within 10 km. Applies linear interpolation only for single-day gaps (24 consecutive missing hours) when both neighboring days are complete. All other missing values remain as NaN.
+5. **Hourly Assembly and Gap Handling**: Constructs hourly time series by extracting data from the matched historical days. For each variable, the method selects the nearest available station within 10 km. Applies linear interpolation only for single-day gaps (24 consecutive missing hours) when both neighboring days are complete.
 
 6. **EPW Generation**: Converts the final hourly dataset to EnergyPlus Weather (EPW) format with appropriate metadata.
 
