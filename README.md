@@ -25,7 +25,7 @@ The FSY pipeline operates in six sequential steps:
 ## Repository Structure
 
 ```
-FSY/
+future_weather_generation/
 ├── Src/
 │   ├── pipeline/
 │   │   ├── config.py              # Configuration and path management
