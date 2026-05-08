@@ -1,14 +1,14 @@
-# FTMY: Future Typical Meteorological Year
+# FSY: Future Synthetic Year
 
 ## Overview
 
-FTMY (Future Typical Meteorological Year) is a scientific pipeline for generating hourly weather files for future climate conditions based on climate projections and historical observations. The method selects representative months from future climate projections using FS (Finkelstein–Schafer) selection, matches projected days to historical observations, and assembles hourly time series from nearby meteorological stations. The output is compatible with building energy simulation formats (EPW files).
+FSY (Future Synthetic Year) is a scientific pipeline for generating hourly weather files for future climate conditions based on climate projections and historical observations. The method selects representative months from future climate projections using FS (Finkelstein–Schafer) selection, matches projected days to historical observations, and assembles hourly time series from nearby meteorological stations. The output is compatible with building energy simulation formats (EPW files).
 
 This implementation corresponds to the methodology described in the associated academic paper.
 
 ## Method Summary
 
-The FTMY pipeline operates in six sequential steps:
+The FSY pipeline operates in six sequential steps:
 
 1. **Projection Extraction**: Extracts daily climate variables (temperature, solar radiation, wind speed) from NetCDF projection files for a target location using nearest grid point selection.
 
@@ -25,7 +25,7 @@ The FTMY pipeline operates in six sequential steps:
 ## Repository Structure
 
 ```
-FTMY/
+FSY/
 ├── Src/
 │   ├── pipeline/
 │   │   ├── config.py              # Configuration and path management
@@ -76,7 +76,7 @@ Each daily file contains 10 min raw observations from multiple stations. The pip
 **Source**: DMI Climate Atlas (bias-corrected CORDEX data)  
 **URL**: https://download.dmi.dk/Research_Projects/klimaatlas/v2024b/daily_bias_corrected/
 
-**Format**: NetCDF files following CORDEX naming conventions. Files should be placed in a single directory accessible via `FTMY_PREDICTION_PATH`.
+**Format**: NetCDF files following CORDEX naming conventions. Files should be placed in a single directory accessible via `FSY_PREDICTION_PATH`.
 
 **File naming**: Files should follow CORDEX conventions, e.g.:
 ```
@@ -93,8 +93,8 @@ tas_KGDK-1_ICHEC-EC-EARTH_rcp85_r3i1p1_KNMI-RACMO22E_v1_day_20110101-20401231.nc
   daily_summary_MM-DD.pkl
 ```
 
-These files contain station metadata and daily statistics used for station selection and historical matching. They must be generated from the historical daily climate data prior to running the pipeline. These files are pre-generated daily summary datasets required by the FTMY pipeline.
-They are generated once from raw historical meteorological data using a separate preprocessing script (preprocessing_historical_data.py) and are not created during FTMY execution. Users must generate these files in advance and set the environment variable FTMY_DAILY_SUMMARIES_PATH to the directory containing daily_summary_MM-DD.pkl files.
+These files contain station metadata and daily statistics used for station selection and historical matching. They must be generated from the historical daily climate data prior to running the pipeline. These files are pre-generated daily summary datasets required by the FSY pipeline.
+They are generated once from raw historical meteorological data using a separate preprocessing script (preprocessing_historical_data.py) and are not created during FSY execution. Users must generate these files in advance and set the environment variable FSY_DAILY_SUMMARIES_PATH to the directory containing daily_summary_MM-DD.pkl files.
 
 ## Environment Setup
 
@@ -114,29 +114,29 @@ The pipeline requires the following environment variables to be set before execu
 
 **Required variables**:
 
-- `FTMY_BASE_DIR`: Path to historical daily climate data directory (contains year subdirectories with `.txt` files)
-- `FTMY_PREDICTION_PATH`: Path to directory containing NetCDF projection files
-- `FTMY_DAILY_SUMMARIES_PATH`: Path to directory containing daily summary pickle files (`daily_summary_MM-DD.pkl`)
+- `FSY_BASE_DIR`: Path to historical daily climate data directory (contains year subdirectories with `.txt` files)
+- `FSY_PREDICTION_PATH`: Path to directory containing NetCDF projection files
+- `FSY_DAILY_SUMMARIES_PATH`: Path to directory containing daily summary pickle files (`daily_summary_MM-DD.pkl`)
 
 **Optional variables**:
 
-- `FTMY_WORKSPACE_ROOT`: Path to repository root (auto-detected if not set)
-- `FTMY_MODE`: Execution mode (`"test"` or `"full"`, defaults to `"full"`)
+- `FSY_WORKSPACE_ROOT`: Path to repository root (auto-detected if not set)
+- `FSY_MODE`: Execution mode (`"test"` or `"full"`, defaults to `"full"`)
 
 **Example setup (Windows PowerShell)**:
 ```powershell
-$env:FTMY_BASE_DIR = "D:\Data\SyntheticWeatherFile"
-$env:FTMY_PREDICTION_PATH = "D:\Data\SynthticWeatherFile\prediction"
-$env:FTMY_DAILY_SUMMARIES_PATH = "D:\Data\SyntheticWeatherFile\historical_daily_climate_variables"
-$env:FTMY_MODE = "test"  # or "full"
+$env:FSY_BASE_DIR = "D:\Data\SyntheticWeatherFile"
+$env:FSY_PREDICTION_PATH = "D:\Data\SynthticWeatherFile\prediction"
+$env:FSY_DAILY_SUMMARIES_PATH = "D:\Data\SyntheticWeatherFile\historical_daily_climate_variables"
+$env:FSY_MODE = "test"  # or "full"
 ```
 
 **Example setup (Linux/Mac)**:
 ```bash
-export FTMY_BASE_DIR="/data/SyntheticWeatherFile"
-export FTMY_PREDICTION_PATH="/data/SynthticWeatherFile/prediction"
-export FTMY_DAILY_SUMMARIES_PATH="/data/SyntheticWeatherFile/historical_daily_climate_variables"
-export FTMY_MODE="test"  # or "full"
+export FSY_BASE_DIR="/data/SyntheticWeatherFile"
+export FSY_PREDICTION_PATH="/data/SynthticWeatherFile/prediction"
+export FSY_DAILY_SUMMARIES_PATH="/data/SyntheticWeatherFile/historical_daily_climate_variables"
+export FSY_MODE="test"  # or "full"
 ```
 
 ## Running the Pipeline
@@ -162,7 +162,7 @@ python Src/pipeline/interface_cli.py \
 - `--lat`: Target latitude in decimal degrees (-90 to 90)
 - `--start-year`: Start year of projection period (e.g., 2025)
 - `--end-year`: End year of projection period (e.g., 2050)
-- `--projection-dir`: Directory containing NetCDF files (can use `$env:FTMY_PREDICTION_PATH`)
+- `--projection-dir`: Directory containing NetCDF files (can use `$env:FSY_PREDICTION_PATH`)
 - `--scenario`: Climate scenario (e.g.,`rcp85`)
 - `--gcm`: Global Climate Model name (e.g., `ICHEC-EC-EARTH`)
 - `--rcm`: Regional Climate Model name (e.g., `DMI-HIRHAM5`)
@@ -175,8 +175,8 @@ Full mode processes all days from the FS-selected months, generating a complete 
 **Activate full mode** (default):
 ```powershell
 # Windows PowerShell
-$env:FTMY_MODE = "full"
-# or simply omit FTMY_MODE (defaults to "full")
+$env:FSY_MODE = "full"
+# or simply omit FSY_MODE (defaults to "full")
 ```
 
 **Example full run**:
@@ -186,7 +186,7 @@ python Src/pipeline/interface_cli.py \
     --lat 55.6761 \
     --start-year 2025 \
     --end-year 2050 \
-    --projection-dir "$env:FTMY_PREDICTION_PATH" \
+    --projection-dir "$env:FSY_PREDICTION_PATH" \
     --scenario rcp85 \
     --gcm ICHEC-EC-EARTH \
     --rcm DMI-HIRHAM5
@@ -214,7 +214,7 @@ All outputs are written to `Output/results/` (full mode) or `Test_Output/results
 
 ### Final Output
 
-- `FTMY_<lat>_<lon>_<scenario>_<gcm>_<rcm>_<year>.epw`: EnergyPlus Weather file for building simulation
+- `FSY_<lat>_<lon>_<scenario>_<gcm>_<rcm>_<year>.epw`: EnergyPlus Weather file for building simulation
 
 ## Limitations
 
@@ -228,7 +228,7 @@ All outputs are written to `Output/results/` (full mode) or `Test_Output/results
 
 ## Citation / Code Availability
 
-This codebase implements the FTMY (Future Typical Meteorological Year) method as described in the associated academic publication. The repository is provided for reproducibility and research purposes. If you use this code, please cite the associated publication.
+This codebase implements the FSY (Future Synthetic Year) method as described in the associated academic publication. The repository is provided for reproducibility and research purposes. If you use this code, please cite the associated publication.
 
 **Code Repository**: [future_weather_generation](https://github.com/AliRezaYaghoubi1998/future_weather_generation)
 
